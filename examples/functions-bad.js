@@ -22,3 +22,18 @@ function addVariablesToTemplate( phone ) {
         return new ErrorResponse();
     }
 }
+
+
+function prepareLunch() {
+    var bread = cabinets.getItem( 'bread' );
+    var meat = frig.getItem( 'turkey' );
+    var cheese = frig.getItem( 'cheese');
+    var condiment = frig.getItem( 'honey mustard' );
+    var sandwich = bread + meat + cheese + condiment;
+
+    var plate = cabinets.getItem( 'plate' );
+    plate.hold( sandwich );
+
+    var glass = cabinets.getItem( 'glass' );
+    glass.fill( sink.getWater() );
+}
