@@ -1,2 +1,2 @@
 # clean-code
-Talk prepared for Hack ISU 2016
+Variations of clean code talk given at various events
