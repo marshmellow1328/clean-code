@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="reveal.js-3.2.0/css/reveal.css">
 		<link rel="stylesheet" href="reveal.js-3.2.0/css/theme/night.css" id="theme">
         <!-- Code syntax highlighting -->
-		<link rel="stylesheet" href="revealjs-2.6.2/lib/css/zenburn.css">
+		<link rel="stylesheet" href="reveal.js-3.2.0/lib/css/qtcreator_dark.css">
     </head>
     <body>
         <div class="reveal">
@@ -73,7 +73,27 @@
                         * Nothing More
                         * Magic Literals
 
-                        <a href="examples/names.js" target="_blank">Examples</a>
+
+                        ### Name Examples
+                        <pre><code>
+                            // meaningful
+                            let array = [];
+                            let attendees = [];
+
+                            // pronounceable
+                            let prrCdTlk = this;
+                            let prairieCodeTalk = this;
+
+                            // fluffy
+                            new GameProcessorComputationEngine();
+                            new GameEngine();
+
+                            // magic literal
+                            if( capacity === 100 ) {}
+
+                            var MAX_CAPACITY = 100;
+                            if( capacity === MAX_CAPACITY ) {}
+                        </code></pre>
 
 
                         ### Comments
@@ -174,7 +194,7 @@
                             condition: function() { return !!document.querySelector( '[data-markdown]' ); }
                         },
                         {
-                            src: 'revealjs-2.6.2/plugin/highlight/highlight.js',
+                            src: 'reveal.js-3.2.0/plugin/highlight/highlight.js',
                             async: true,
                             condition: function() { return !!document.querySelector( 'pre code' ); },
                             callback: function() { hljs.initHighlightingOnLoad(); }
