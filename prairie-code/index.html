@@ -74,24 +74,47 @@
                         * Magic Literals
 
 
-                        ### Name Examples
-                        <pre><code>
-                            // meaningful
-                            let array = [];
+                        #### Meaningful Names
+                        <pre><code class="JavaScript">
+                            // bad
+                            let arr = [];
+
+                            // good
                             let attendees = [];
+                        </code></pre>
 
-                            // pronounceable
+
+                        #### Pronounceable Names
+                        <pre><code class="JavaScript">
+                            // bad
                             let prrCdTlk = this;
+
+                            // good
                             let prairieCodeTalk = this;
+                        </code></pre>
 
-                            // fluffy
+
+                        #### Concise Names
+                        <pre><code class="JavaScript">
+                            // bad
                             new GameProcessorComputationEngine();
-                            new GameEngine();
 
+                            // good
+                            new GameEngine();
+                        </code></pre>
+
+
+                        #### Don't Get Fluffy
+                        ![fluffy cat](fluffy_cat.jpg "courtesy of http://www.boredpanda.com/fluffy-cats-funny-animal-pics/")
+
+
+                        #### Magic Literals
+                        <pre><code class="JavaScript">
                             // magic literal
                             if( capacity === 100 ) {}
 
-                            var MAX_CAPACITY = 100;
+                            // good
+                            let MAX_CAPACITY = 100;
                             if( capacity === MAX_CAPACITY ) {}
                         </code></pre>
 
