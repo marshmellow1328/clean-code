@@ -185,18 +185,11 @@
                 {
                     history: true,
                     dependencies: [
-                        {
-                            src: 'reveal.js-3.2.0/plugin/markdown/marked.js',
-                            condition: function() { return !!document.querySelector( '[data-markdown]' ); }
-                        },
-                        {
-                            src: 'reveal.js-3.2.0/plugin/markdown/markdown.js',
-                            condition: function() { return !!document.querySelector( '[data-markdown]' ); }
-                        },
+                        { src: 'reveal.js-3.2.0/plugin/markdown/marked.js' },
+                        { src: 'reveal.js-3.2.0/plugin/markdown/markdown.js' },
                         {
                             src: 'reveal.js-3.2.0/plugin/highlight/highlight.js',
                             async: true,
-                            condition: function() { return !!document.querySelector( 'pre code' ); },
                             callback: function() { hljs.initHighlightingOnLoad(); }
                         }
                     ]
