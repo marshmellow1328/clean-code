@@ -132,6 +132,22 @@
                         <a href="examples/comments.js" target="_blank">Examples</a>
 
 
+                        #### Redundant
+                        <pre><code class="JavaScript">
+                            // add attendee
+                            talk.addAttendee( 'Shawn' );
+                        </code></pre>
+
+
+                        #### Misleading
+                        <pre><code class="JavaScript">
+                            // add domains
+                            template.add( 'google', 'https://www.google.com' );
+                            template.add( 'yahoo', 'https://www.yahoo.com' );
+                            template.add( 'phone', '555-5555' );
+                        </code></pre>
+
+
                         ### Functions
                         * Length: <10 LOC
                             * [Function Decomposition](https://en.wikipedia.org/wiki/Decomposition_(computer_science&#41;)
