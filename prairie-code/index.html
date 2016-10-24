@@ -277,7 +277,7 @@
                         </code></pre>
 
 
-                        #### Function Length
+                        #### Length
                         * < 10 LOC
                         * [Function Decomposition](https://en.wikipedia.org/wiki/Decomposition_(computer_science&#41;)
                         * Helper Methods
@@ -298,8 +298,69 @@
 
 
                         ### Conditionals
-                        * Needed? [Example](examples/conditionals-unnecessary.js)
-                        * Move complex rules to named methods [Example](examples/conditionals-helper.js)
+
+
+                        #### Example 1
+                        <pre><code class="JavaScript">
+                            const MAX_CAPACITY = 100;
+
+                            function isMaxCapacity( capacity ) {
+                                if( capacity === MAX_CAPACITY ) {
+                                    return true;
+                                }
+                                else {
+                                    return false;
+                                }
+                            }
+                        </code></pre>
+
+                        #### Alternative
+                        <pre><code class="JavaScript">
+                            const MAX_CAPACITY = 100;
+
+                            function isMaxCapacity( capacity ) {
+                                return capacity === MAX_CAPACITY;
+                            }
+                        </code></pre>
+
+
+                        #### Example 2
+                        <pre><code class="JavaScript">
+                            if( (value !== null && value > 1000) || vipStatus ) {
+                                //TODO do something
+                            }
+                        </code></pre>
+
+                        #### Alternative
+                        <pre><code class="JavaScript">
+                            if( isPreferred() ) {
+                                //TODO do something
+                            }
+
+                            function isPreferred() {
+                                return (value !== null && value > 1000 ) || vipStatus;
+                            }
+                        </code></pre>
+
+                        #### Another Alternative
+                        <pre><code class="JavaScript">
+                            if( isPreferred() ) {
+                                //TODO do something
+                            }
+
+                            function isPreferred() {
+                                return hasLargeValue() || vipStatus;
+                            }
+
+                            function hasLargeValue() {
+                                return value !== null && value > 1000;
+                            }
+                        </code></pre>
+
+
+                        #### Conditionals Recap
+                        * Needed?
+                        * Move complex rules to named functions
 
 
                         ## How to Keep Code Clean?
@@ -320,8 +381,7 @@
                             * PMD
                             * FindBugs
                         * JavaScript
-                            * jshint
-                            * jscs
+                            * eslint
                         * Sonar
 
 
