@@ -120,26 +120,16 @@
 
 
                         ### Comments
-                        * Problems w/ Comments
-                            * Redundant
-                            * Misleading or Out of Date
-                        * Adding value?
-                        * Do you really understand the problem?
-                        * Considerations before Commenting
-                            * Better names
-                            * Helper functions
-
-                        <a href="examples/comments.js" target="_blank">Examples</a>
 
 
-                        #### Redundant
+                        #### Example 1
                         <pre><code class="JavaScript">
                             // add attendee
                             talk.addAttendee( 'Shawn' );
                         </code></pre>
 
 
-                        #### Misleading
+                        #### Example 2
                         <pre><code class="JavaScript">
                             // add domains
                             template.add( 'google', 'https://www.google.com' );
@@ -148,11 +138,23 @@
                         </code></pre>
 
 
+                        #### Comments Gone Wrong
+                        * Redundant
+                        * Misleading or Out of Date
+                        * Adding value?
+                        * Do you really understand the problem?
+
+
+                        #### Alternatives
+                        * Better names
+                        * Helper functions
+
+
                         ### Functions
-                        * Length: <10 LOC
+                        * Length: < 10 LOC
                             * [Function Decomposition](https://en.wikipedia.org/wiki/Decomposition_(computer_science&#41;)
                             * Helper Methods
-                        * Number of Params: <4
+                        * Number of Params: < 4
                             * [Builder Pattern](https://en.wikipedia.org/wiki/Builder_pattern)
                             * [Command Pattern](https://en.wikipedia.org/wiki/Command_pattern)
                         * Do One Thing!
