@@ -358,6 +358,26 @@
                         </code></pre>
 
 
+                        #### Example 3
+                        <pre><code class="JavaScript">
+                            if( command === 'run' ) {
+                                run();
+                            }
+                            else if( command === 'pass' ) {
+                                pass();
+                            }
+                        </code></pre>
+
+                        #### Alternative
+                        <pre><code class="JavaScript">
+                            let commands = {
+                                run: run,
+                                pass: pass
+                            };
+                            commands[command]();
+                        </code></pre>
+                        
+
                         #### Conditionals Recap
                         * Needed?
                         * Move complex rules to named functions
