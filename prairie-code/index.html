@@ -124,7 +124,7 @@
 
 
                         #### Don't Get Fluffy
-                        ![fluffy cat](fluffy_cat.jpg "courtesy of http://www.boredpanda.com/fluffy-cats-funny-animal-pics/")
+                        ![fluffy cat](fluffy_cat.jpg "courtesy of http://www.boredpanda.com/fluffy-cats-funny-animal-pics/")<!-- .element: style="max-height: 500px;" -->
 
 
                         #### Magic Literals
@@ -446,7 +446,8 @@
 
 
                         ## References
-                        <img src="clean_code.jpg"><br>
+                        ![clean code book](clean_code.jpg)<!-- .element: style="max-height: 400px;" -->
+
                         [Clean Code by Robert C. Martin](http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)
 
 
@@ -471,6 +472,8 @@
             Reveal.initialize(
                 {
                     history: true,
+                    minScale: 1,
+                    maxScale: 1,
                     dependencies: [
                         { src: 'reveal.js-3.2.0/plugin/markdown/marked.js' },
                         { src: 'reveal.js-3.2.0/plugin/markdown/markdown.js' },
@@ -478,7 +481,8 @@
                             src: 'reveal.js-3.2.0/plugin/highlight/highlight.js',
                             async: true,
                             callback: function() { hljs.initHighlightingOnLoad(); }
-                        }
+                        },
+                        { src: 'reveal.js-3.2.0/plugin/zoom-js/zoom.js', async: true }
                     ]
                 }
             );
