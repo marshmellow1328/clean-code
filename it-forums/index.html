@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Your Code Won't Clean Itself!</title>
+        <meta name="author" content="Shawn Sparks">
+        <link rel="stylesheet" href="reveal.js-3.2.0/css/reveal.css">
+		<link rel="stylesheet" href="reveal.js-3.2.0/css/theme/night.css" id="theme">
+        <!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="reveal.js-3.2.0/lib/css/qtcreator_dark.css">
+        <style>
+            body {
+                background: #0091da;
+            }
+
+            .reveal pre code {
+                max-height: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section data-markdown data-separator="\n\n\n">
+                    <script type="text/template">
+                        # Your Code Won't Clean Itself!
+
+                        Shawn Sparks
+
+
+                        ## What's Clean Code?
+                        <img src="code_quality.jpg">
+
+
+                        ## What's Clean Code?
+                        * Easy to Understand<!-- .element: class="fragment" data-fragment-index="1" -->
+                        * Easy to Maintain<!-- .element: class="fragment" data-fragment-index="2" -->
+                        * Testable<!-- .element: class="fragment" data-fragment-index="3" -->
+
+
+                        ## Why Do We Care?
+                        * 50-75% Life of Software is Maintenance [<sup>[1]</sup>](http://stackoverflow.com/questions/3477706/development-cost-versus-maintenance-cost)[<sup>[2]</sup>](http://programmers.stackexchange.com/questions/47991/where-is-this-from-originally-80-of-the-lifetime-cost-of-a-piece-of-softwa)
+                        * Cost of Rewrites
+                        * More time reading than writing (10:1 according to Uncle Bob)
+
+
+                        ## Clean Code
+                        ![mustang car](mustang.jpg)<!-- .element: style="margin-right: 1.0em; width: 48%;" -->
+                        ![speed limit sign](speed_limit.png)
+
+                        More like guidelines than rules
+
+
+                        ### Guiding Questions
+                        * Is this adding value?
+                        * Will I understand this in 6 months?
+                        * Can someone else understand this? (Ask someone else!)
+
+
+                        ### Topics
+                        * Names
+                        * Comments
+                        * Functions
+                        * Conditionals
+                        * Design
+
+
+                        ### Names
+
+
+                        #### Names
+                        * Meaningful
+                        * Pronounceable
+                        * Enough to be Clear
+                        * Nothing More
+                        * Magic Literals
+
+
+                        #### Meaningful Names
+                        <pre><code class="JavaScript">
+                            // bad
+                            let array = [];
+
+                            // good
+                            let attendees = [];
+                        </code></pre>
+
+
+                        #### Pronounceable Names
+                        <pre><code class="JavaScript">
+                            // bad
+                            let itFrms = this;
+
+                            // good
+                            let itForums = this;
+                        </code></pre>
+
+
+                        #### Concise Names
+                        <pre><code class="JavaScript">
+                            // bad
+                            new GameProcessorComputationEngine();
+
+                            // good
+                            new GameEngine();
+                        </code></pre>
+
+
+                        #### Don't Get Fluffy
+                        ![fluffy cat](fluffy_cat.jpg "courtesy of http://www.boredpanda.com/fluffy-cats-funny-animal-pics/")<!-- .element: style="max-height: 500px;" -->
+
+
+                        #### Magic Literals
+                        <pre><code class="JavaScript">
+                            // magic literal
+                            if( capacity === 100 ) {}
+
+                            // good
+                            const MAX_CAPACITY = 100;
+                            if( capacity === MAX_CAPACITY ) {}
+                        </code></pre>
+
+
+                        ### Comments
+
+
+                        #### Example 1
+                        <pre><code class="JavaScript">
+                            // add attendee
+                            talk.addAttendee( 'Shawn' );
+                        </code></pre>
+
+
+                        #### Example 2
+                        <pre><code class="JavaScript">
+                            // add domains
+                            template.add( 'google', 'https://www.google.com' );
+                            template.add( 'yahoo', 'https://www.yahoo.com' );
+                            template.add( 'phone', '555-5555' );
+                        </code></pre>
+
+
+                        #### Comments Gone Wrong
+                        * Redundant
+                        * Misleading or Out of Date
+                        * Adding value?
+                        * Do you really understand the problem?
+
+
+                        #### Alternatives
+                        * Better names
+                        * Helper functions
+
+
+                        ### Functions
+
+
+                        #### Example 1
+                        <pre><code class="JavaScript">
+                            function takeLunchHour() {
+                                prepareLunch();
+                                eatLunch();
+                            }
+
+                            function prepareLunch() {
+                                const bread = cabinets.getItem( 'bread' );
+                                const meat = frig.getItem( 'turkey' );
+                                const cheese = frig.getItem( 'cheese');
+                                const condiment = frig.getItem( 'honey mustard' );
+                                const sandwich = bread + meat + cheese + condiment;
+
+                                const plate = cabinets.getItem( 'plate' );
+                                plate.hold( sandwich );
+
+                                const pan = sink.getItem( 'pan' );
+                                wash( pan );
+                                cabinets.addItem( pan );
+
+                                const glass = cabinets.getItem( 'glass' );
+                                glass.fill( sink.getWater() );
+                            }
+                        </code></pre>
+
+
+                        #### Example 1 - Alternative
+                        <pre><code class="JavaScript">
+                            function takeLunchHour() {
+                                clearSink();
+                                prepareLunch();
+                                eatLunch();
+                            }
+
+                            function clearSink() {
+                                const pan = sink.getItem( 'pan' );
+                                wash( pan );
+                                cabinets.addItem( pan );
+                            }
+
+                            function prepareLunch() {
+                                const sandwich = makeSandwich();
+                                const plate = cabinets.getItem( 'plate' );
+                                plate.hold( sandwich );
+
+                                const glass = cabinets.getItem( 'glass' );
+                                glass.fill( sink.getWater() );
+                            }
+
+                            function makeSandwich() {
+                                const bread = cabinets.getItem( 'bread' );
+                                const meat = frig.getItem( 'turkey' );
+                                const cheese = frig.getItem( 'cheese');
+                                const condiment = frig.getItem( 'honey mustard' );
+                                const sandwich = bread + meat + cheese + condiment;
+                                return sandwich;
+                            }
+                        </code></pre>
+
+
+                        #### Example 2
+                        <pre><code class="JavaScript">
+                            function getOutput( phone, apiKey ) {
+                                const errors = validateInputs( phone, apiKey );
+                                if( errors ) {
+                                    return new ErrorResponse();
+                                }
+
+                                trackUsage( apiKey );
+
+                                return addVariablesToTemplate( phone );
+                            }
+
+                            function addVariablesToTemplate( phone ) {
+                                const variables = new Map();
+                                variables.add( 'google', 'https://www.google.com' );
+                                variables.add( 'phone', phone );
+
+                                try {
+                                    const output = template.render( variables );
+                                    return new SuccessResponse( output );
+                                }
+                                catch( error ) {
+                                    return new ErrorResponse();
+                                }
+                            }
+                        </code></pre>
+
+
+                        #### Example 2 - Alternative
+                        <pre><code class="JavaScript">
+                            function getOutput( phone, apiKey ) {
+                                const errors = validateInputs( phone, apiKey );
+                                if( errors ) {
+                                    return new ErrorResponse();
+                                }
+
+                                trackUsage( apiKey );
+
+                                try {
+                                    var output = processTemplate( phone );
+                                    return new SuccessResponse( output );
+                                }
+                                catch( error ) {
+                                    return new ErrorResponse( error );
+                                }
+                            }
+
+                            function processTemplate( phone ) {
+                                const variables = new Map();
+                                variables.add( 'google', 'https://www.google.com' );
+                                variables.add( 'phone', phone );
+
+                                return template.render( variables );
+                            }
+                        </code></pre>
+
+
+                        #### Length
+                        * < 10 LOC
+                        * [Function Decomposition](https://en.wikipedia.org/wiki/Decomposition_(computer_science&#41;)
+                        * Helper Methods
+
+
+                        #### Number of Parameters
+                        * < 4
+                        * [Builder Pattern](https://en.wikipedia.org/wiki/Builder_pattern)
+                        * [Command Pattern](https://en.wikipedia.org/wiki/Command_pattern)
+
+
+                        #### Do One Thing!
+                        * [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle)
+
+
+                        #### DRY
+                        * [Don't Repeat Yourself](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
+
+
+                        ### Conditionals
+
+
+                        #### Example 1
+                        <pre><code class="JavaScript">
+                            const MAX_CAPACITY = 100;
+
+                            function isMaxCapacity( capacity ) {
+                                if( capacity === MAX_CAPACITY ) {
+                                    return true;
+                                }
+                                else {
+                                    return false;
+                                }
+                            }
+                        </code></pre>
+
+                        #### Alternative
+                        <pre><code class="JavaScript">
+                            const MAX_CAPACITY = 100;
+
+                            function isMaxCapacity( capacity ) {
+                                return capacity === MAX_CAPACITY;
+                            }
+                        </code></pre>
+
+
+                        #### Example 2
+                        <pre><code class="JavaScript">
+                            if( (value !== null && value > 1000) || vipStatus ) {
+                                //TODO do something
+                            }
+                        </code></pre>
+
+                        #### Alternative
+                        <pre><code class="JavaScript">
+                            if( isPreferred() ) {
+                                //TODO do something
+                            }
+
+                            function isPreferred() {
+                                return (value !== null && value > 1000 ) || vipStatus;
+                            }
+                        </code></pre>
+
+
+                        #### A Step Further
+                        <pre><code class="JavaScript">
+                            if( isPreferred() ) {
+                                //TODO do something
+                            }
+
+                            function isPreferred() {
+                                return hasLargeValue() || vipStatus;
+                            }
+
+                            function hasLargeValue() {
+                                return value !== null && value > 1000;
+                            }
+                        </code></pre>
+
+
+                        #### Example 3
+                        <pre><code class="JavaScript">
+                            if( command === 'run' ) {
+                                run();
+                            }
+                            else if( command === 'pass' ) {
+                                pass();
+                            }
+                        </code></pre>
+
+                        #### Alternative
+                        <pre><code class="JavaScript">
+                            const commands = {
+                                run: run,
+                                pass: pass
+                            };
+                            commands[command]();
+                        </code></pre>
+
+
+                        #### Conditionals Recap
+                        * Needed?
+                        * Move complex rules to named functions
+
+
+                        ### Design
+
+
+                        #### Design
+                        * Limit code mutability
+                        * Limit scope
+
+
+                        ## How to Keep Code Clean?
+
+
+                        ### Boyscout Rule
+                        "Leave the code cleaner than you found it"
+
+
+                        ### Code Review
+                        * Ask someone what they think
+                        * Pull requests
+
+
+                        ### Automated Tools
+                        * Java
+                            * Checkstyle
+                            * PMD
+                            * FindBugs
+                        * JavaScript
+                            * eslint
+                        * Sonar
+
+
+                        ### Eslint Rules
+                        * no-magic-numbers
+                        * no-unused-vars
+                        * max-depth
+                        * max-lines
+                        * max-params
+                        * max-statements
+                        * comma-spacing
+                        * [And more!](http://eslint.org/docs/rules/)
+
+
+                        ## Summary
+                        * Names Matter
+                        * Functions should be short
+                        * Functions should do one thing
+                        * Boyscout Rule
+
+
+                        ## References
+                        ![clean code book](clean_code.jpg)<!-- .element: style="max-height: 400px;" -->
+
+                        [Clean Code by Robert C. Martin](http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)
+
+
+                        ## Additional Good Sources
+                        * Martin Fowler
+                            * [martinfowler.com](http://martinfowler.com)
+                            * [@martinfowler](https://twitter.com/martinfowler)
+                        * Uncle Bob (Robert C. Martin) - [@unclebobmartin](https://twitter.com/unclebobmartin)
+                        * Kent Beck - [@KentBeck](https://twitter.com/KentBeck)
+                        * [Design Patterns](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612) "Gang of Four Book"
+
+
+                        ## Questions?
+                    </script>
+                </section>
+            </div>
+        </div>
+
+        <script src="reveal.js-3.2.0/lib/js/head.min.js"></script>
+        <script src="reveal.js-3.2.0/js/reveal.js"></script>
+        <script type="text/javascript">
+            Reveal.initialize(
+                {
+                    history: true,
+                    minScale: 1,
+                    maxScale: 1,
+                    slideNumber: true,
+                    dependencies: [
+                        { src: 'reveal.js-3.2.0/plugin/markdown/marked.js' },
+                        { src: 'reveal.js-3.2.0/plugin/markdown/markdown.js' },
+                        {
+                            src: 'reveal.js-3.2.0/plugin/highlight/highlight.js',
+                            async: true,
+                            callback: function() { hljs.initHighlightingOnLoad(); }
+                        },
+                        { src: 'reveal.js-3.2.0/plugin/zoom-js/zoom.js', async: true }
+                    ]
+                }
+            );
+        </script>
+    </body>
+</html>
